@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BF0A658D244F2A3B00280FA6 /* RepositoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */; };
 		B100000000000000000000B1 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000A1 /* Repository.swift */; };
 		B100000000000000000000B2 /* GitHubAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000A2 /* GitHubAPIClient.swift */; };
 		B100000000000000000000B3 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000A3 /* ImageLoader.swift */; };
 		B100000000000000000000B4 /* RepositorySearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000A4 /* RepositorySearchViewModel.swift */; };
 		B100000000000000000000B5 /* RepositoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000A5 /* RepositoryDetailViewModel.swift */; };
+		B100000000000000000000B6 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000A6 /* TestHelpers.swift */; };
+		B100000000000000000000B7 /* RepositorySearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000A7 /* RepositorySearchViewModelTests.swift */; };
+		B100000000000000000000B8 /* RepositoryDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000A8 /* RepositoryDetailViewModelTests.swift */; };
+		B100000000000000000000B9 /* RepositoryDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000A9 /* RepositoryDecodingTests.swift */; };
+		BF0A658D244F2A3B00280FA6 /* RepositoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */; };
 		BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945DE244DC5E80012785A /* AppDelegate.swift */; };
 		BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945E0244DC5E80012785A /* SceneDelegate.swift */; };
 		BFD945E3244DC5E80012785A /* RepositorySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD945E2244DC5E80012785A /* RepositorySearchViewController.swift */; };
 		BFD945E6244DC5E80012785A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD945E4244DC5E80012785A /* Main.storyboard */; };
 		BFD945E8244DC5EB0012785A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD945E7244DC5EB0012785A /* Assets.xcassets */; };
 		BFD945EB244DC5EB0012785A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD945E9244DC5EB0012785A /* LaunchScreen.storyboard */; };
-		B100000000000000000000B6 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000A6 /* TestHelpers.swift */; };
-		B100000000000000000000B7 /* RepositorySearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000A7 /* RepositorySearchViewModelTests.swift */; };
-		B100000000000000000000B8 /* RepositoryDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000A8 /* RepositoryDetailViewModelTests.swift */; };
-		B100000000000000000000B9 /* RepositoryDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000000000000000000A9 /* RepositoryDecodingTests.swift */; };
 		BFD94601244DC5EC0012785A /* iOSEngineerCodeCheckUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD94600244DC5EC0012785A /* iOSEngineerCodeCheckUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,12 +44,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewController.swift; sourceTree = "<group>"; };
 		A100000000000000000000A1 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		A100000000000000000000A2 /* GitHubAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPIClient.swift; sourceTree = "<group>"; };
 		A100000000000000000000A3 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		A100000000000000000000A4 /* RepositorySearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySearchViewModel.swift; sourceTree = "<group>"; };
 		A100000000000000000000A5 /* RepositoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModel.swift; sourceTree = "<group>"; };
+		A100000000000000000000A6 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		A100000000000000000000A7 /* RepositorySearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySearchViewModelTests.swift; sourceTree = "<group>"; };
+		A100000000000000000000A8 /* RepositoryDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModelTests.swift; sourceTree = "<group>"; };
+		A100000000000000000000A9 /* RepositoryDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDecodingTests.swift; sourceTree = "<group>"; };
+		BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewController.swift; sourceTree = "<group>"; };
 		BFD945DB244DC5E80012785A /* iOSEngineerCodeCheck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSEngineerCodeCheck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD945DE244DC5E80012785A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFD945E0244DC5E80012785A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,10 +63,6 @@
 		BFD945EA244DC5EB0012785A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFD945EC244DC5EB0012785A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFD945F1244DC5EB0012785A /* iOSEngineerCodeCheckTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSEngineerCodeCheckTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A100000000000000000000A6 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
-		A100000000000000000000A7 /* RepositorySearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySearchViewModelTests.swift; sourceTree = "<group>"; };
-		A100000000000000000000A8 /* RepositoryDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModelTests.swift; sourceTree = "<group>"; };
-		A100000000000000000000A9 /* RepositoryDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDecodingTests.swift; sourceTree = "<group>"; };
 		BFD945F7244DC5EB0012785A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFD945FC244DC5EB0012785A /* iOSEngineerCodeCheckUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSEngineerCodeCheckUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD94600244DC5EC0012785A /* iOSEngineerCodeCheckUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSEngineerCodeCheckUITests.swift; sourceTree = "<group>"; };
@@ -131,6 +131,27 @@
 			path = iOSEngineerCodeCheck;
 			sourceTree = "<group>";
 		};
+		BFD945F4244DC5EB0012785A /* iOSEngineerCodeCheckTests */ = {
+			isa = PBXGroup;
+			children = (
+				A100000000000000000000A6 /* TestHelpers.swift */,
+				A100000000000000000000A7 /* RepositorySearchViewModelTests.swift */,
+				A100000000000000000000A8 /* RepositoryDetailViewModelTests.swift */,
+				A100000000000000000000A9 /* RepositoryDecodingTests.swift */,
+				BFD945F7244DC5EB0012785A /* Info.plist */,
+			);
+			path = iOSEngineerCodeCheckTests;
+			sourceTree = "<group>";
+		};
+		BFD945FF244DC5EB0012785A /* iOSEngineerCodeCheckUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BFD94600244DC5EC0012785A /* iOSEngineerCodeCheckUITests.swift */,
+				BFD94602244DC5EC0012785A /* Info.plist */,
+			);
+			path = iOSEngineerCodeCheckUITests;
+			sourceTree = "<group>";
+		};
 		C100000000000000000000C1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,27 +185,6 @@
 				BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		BFD945F4244DC5EB0012785A /* iOSEngineerCodeCheckTests */ = {
-			isa = PBXGroup;
-			children = (
-				A100000000000000000000A6 /* TestHelpers.swift */,
-				A100000000000000000000A7 /* RepositorySearchViewModelTests.swift */,
-				A100000000000000000000A8 /* RepositoryDetailViewModelTests.swift */,
-				A100000000000000000000A9 /* RepositoryDecodingTests.swift */,
-				BFD945F7244DC5EB0012785A /* Info.plist */,
-			);
-			path = iOSEngineerCodeCheckTests;
-			sourceTree = "<group>";
-		};
-		BFD945FF244DC5EB0012785A /* iOSEngineerCodeCheckUITests */ = {
-			isa = PBXGroup;
-			children = (
-				BFD94600244DC5EC0012785A /* iOSEngineerCodeCheckUITests.swift */,
-				BFD94602244DC5EC0012785A /* Info.plist */,
-			);
-			path = iOSEngineerCodeCheckUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -508,7 +508,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QXK7568ZT4;
 				INFOPLIST_FILE = iOSEngineerCodeCheck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -526,7 +526,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QXK7568ZT4;
 				INFOPLIST_FILE = iOSEngineerCodeCheck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

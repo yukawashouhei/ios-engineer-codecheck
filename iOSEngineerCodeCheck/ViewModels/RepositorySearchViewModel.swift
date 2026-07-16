@@ -51,7 +51,8 @@ final class RepositorySearchViewModel {
         searchTask?.cancel()
     }
 
-    func repository(at index: Int) -> Repository {
-        repositories[index]
+    /// 指定位置のリポジトリを返す。範囲外の場合は nil
+    func repository(at index: Int) -> Repository? {
+        repositories.indices.contains(index) ? repositories[index] : nil
     }
 }

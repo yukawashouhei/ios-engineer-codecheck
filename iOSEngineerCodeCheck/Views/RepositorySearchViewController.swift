@@ -40,10 +40,10 @@ final class RepositorySearchViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "Detail",
               let detailViewController = segue.destination as? RepositoryDetailViewController,
-              let selectedIndexPath = tableView.indexPathForSelectedRow else {
+              let selectedIndexPath = tableView.indexPathForSelectedRow,
+              let repository = viewModel.repository(at: selectedIndexPath.row) else {
             return
         }
-        let repository = viewModel.repository(at: selectedIndexPath.row)
         detailViewController.viewModel = RepositoryDetailViewModel(repository: repository)
     }
 
@@ -56,8 +56,10 @@ final class RepositorySearchViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Repository", for: indexPath)
         let repository = viewModel.repositories[indexPath.row]
-        cell.textLabel?.text = repository.fullName
-        cell.detailTextLabel?.text = repository.language
+        var content = UIListContentConfiguration.valueCell()
+        content.text = repository.fullName
+        content.secondaryText = repository.language
+        cell.contentConfiguration = content
         return cell
     }
 

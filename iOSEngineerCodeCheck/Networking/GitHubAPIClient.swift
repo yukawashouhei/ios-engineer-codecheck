@@ -37,6 +37,12 @@ enum GitHubAPIError: LocalizedError {
 /// GitHub API クライアントの実装
 final class GitHubAPIClient: GitHubAPIClientProtocol {
 
+    private static let decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
+
     private let session: URLSession
 
     init(session: URLSession = .shared) {
@@ -68,9 +74,7 @@ final class GitHubAPIClient: GitHubAPIClientProtocol {
         }
 
         do {
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            return try decoder.decode(RepositorySearchResponse.self, from: data).items
+            return try Self.decoder.decode(RepositorySearchResponse.self, from: data).items
         } catch {
             throw GitHubAPIError.decodingFailed
         }
