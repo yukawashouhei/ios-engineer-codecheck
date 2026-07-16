@@ -32,7 +32,7 @@ final class RepositoryDetailViewController: UIViewController {
         titleLabel.text = repository["full_name"] as? String
         languageLabel.text = "Written in \(repository["language"] as? String ?? "")"
         starsLabel.text = "\(repository["stargazers_count"] as? Int ?? 0) stars"
-        watchersLabel.text = "\(repository["wachers_count"] as? Int ?? 0) watchers"
+        watchersLabel.text = "\(repository["watchers_count"] as? Int ?? 0) watchers"
         forksLabel.text = "\(repository["forks_count"] as? Int ?? 0) forks"
         issuesLabel.text = "\(repository["open_issues_count"] as? Int ?? 0) open issues"
     }
@@ -43,10 +43,10 @@ final class RepositoryDetailViewController: UIViewController {
               let avatarURL = URL(string: avatarURLString) else {
             return
         }
-        URLSession.shared.dataTask(with: avatarURL) { data, _, _ in
+        URLSession.shared.dataTask(with: avatarURL) { [weak self] data, _, _ in
             guard let data, let image = UIImage(data: data) else { return }
             DispatchQueue.main.async {
-                self.avatarImageView.image = image
+                self?.avatarImageView.image = image
             }
         }.resume()
     }
