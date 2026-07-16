@@ -10,7 +10,7 @@ import Foundation
 /// GitHub API へのアクセスを抽象化するプロトコル。
 /// ViewModel はこのプロトコルにのみ依存するため、テスト時にモックへ差し替えられる。
 protocol GitHubAPIClientProtocol {
-    func searchRepositories(keyword: String) async throws -> [Repository]
+    func searchRepositories(keyword: String) async throws -> RepositorySearchResponse
 }
 
 /// GitHub API 通信で発生しうるエラー
@@ -49,7 +49,7 @@ final class GitHubAPIClient: GitHubAPIClientProtocol {
         self.session = session
     }
 
-    func searchRepositories(keyword: String) async throws -> [Repository] {
+    func searchRepositories(keyword: String) async throws -> RepositorySearchResponse {
         var components = URLComponents(string: "https://api.github.com/search/repositories")
         components?.queryItems = [URLQueryItem(name: "q", value: keyword)]
         guard let url = components?.url else {
@@ -74,7 +74,7 @@ final class GitHubAPIClient: GitHubAPIClientProtocol {
         }
 
         do {
-            return try Self.decoder.decode(RepositorySearchResponse.self, from: data).items
+            return try Self.decoder.decode(RepositorySearchResponse.self, from: data)
         } catch {
             throw GitHubAPIError.decodingFailed
         }

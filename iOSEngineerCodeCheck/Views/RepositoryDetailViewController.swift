@@ -35,7 +35,31 @@ final class RepositoryDetailViewController: UIViewController {
         watchersLabel.text = viewModel.watchersText
         forksLabel.text = viewModel.forksText
         issuesLabel.text = viewModel.issuesText
+        avatarImageView.layer.cornerRadius = 16
+        avatarImageView.clipsToBounds = true
         loadAvatarImage(from: viewModel.avatarURL)
+        addOpenInGitHubButton(url: viewModel.repositoryURL)
+    }
+
+    /// リポジトリの GitHub ページを Safari で開くボタンを配置する
+    private func addOpenInGitHubButton(url: URL?) {
+        guard let url else { return }
+
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "GitHubで見る"
+        configuration.image = UIImage(systemName: "safari")
+        configuration.imagePadding = 8
+        configuration.cornerStyle = .large
+
+        let button = UIButton(configuration: configuration, primaryAction: UIAction { _ in
+            UIApplication.shared.open(url)
+        })
+        button.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(button)
+        NSLayoutConstraint.activate([
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24),
+        ])
     }
 
     private func loadAvatarImage(from url: URL?) {

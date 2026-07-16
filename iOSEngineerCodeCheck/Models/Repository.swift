@@ -21,10 +21,12 @@ struct Repository: Decodable, Equatable {
     let watchersCount: Int
     let forksCount: Int
     let openIssuesCount: Int
+    let htmlUrl: URL?
     let owner: Owner
 }
 
 /// GitHub Search API (search/repositories) のレスポンス
 struct RepositorySearchResponse: Decodable {
+    let totalCount: Int
     let items: [Repository]
 }

@@ -13,6 +13,7 @@ final class RepositoryDecodingTests: XCTestCase {
     func test_GitHubAPIのレスポンスJSONをデコードできる() throws {
         let json = """
         {
+            "total_count": 12345,
             "items": [
                 {
                     "full_name": "apple/swift",
@@ -21,6 +22,7 @@ final class RepositoryDecodingTests: XCTestCase {
                     "watchers_count": 60000,
                     "forks_count": 9000,
                     "open_issues_count": 500,
+                    "html_url": "https://github.com/apple/swift",
                     "owner": {
                         "avatar_url": "https://avatars.githubusercontent.com/u/10639145"
                     }
@@ -33,8 +35,10 @@ final class RepositoryDecodingTests: XCTestCase {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         let response = try decoder.decode(RepositorySearchResponse.self, from: Data(json.utf8))
 
+        XCTAssertEqual(response.totalCount, 12345)
         let repository = try XCTUnwrap(response.items.first)
         XCTAssertEqual(repository.fullName, "apple/swift")
+        XCTAssertEqual(repository.htmlUrl, URL(string: "https://github.com/apple/swift"))
         XCTAssertEqual(repository.language, "C++")
         XCTAssertEqual(repository.stargazersCount, 60000)
         XCTAssertEqual(repository.watchersCount, 60000)
@@ -49,6 +53,7 @@ final class RepositoryDecodingTests: XCTestCase {
     func test_languageがnullでもデコードできる() throws {
         let json = """
         {
+            "total_count": 1,
             "items": [
                 {
                     "full_name": "user/repo",

@@ -17,6 +17,12 @@ final class RepositorySearchViewModel {
     /// 検索結果の一覧。更新されると onUpdate が呼ばれる
     private(set) var repositories: [Repository] = []
 
+    /// 検索結果の総件数(表示中の件数とは別に、API が返すヒット総数)
+    private(set) var totalCount = 0
+
+    /// 一度でも検索を実行したかどうか(空状態の表示出し分けに使用)
+    private(set) var hasSearched = false
+
     /// 検索結果が更新されたときに呼ばれる
     var onUpdate: (() -> Void)?
     /// エラーが発生したときに、表示用メッセージとともに呼ばれる
@@ -34,9 +40,11 @@ final class RepositorySearchViewModel {
         searchTask?.cancel()
         searchTask = Task {
             do {
-                let repositories = try await apiClient.searchRepositories(keyword: keyword)
+                let response = try await apiClient.searchRepositories(keyword: keyword)
                 try Task.checkCancellation()
-                self.repositories = repositories
+                repositories = response.items
+                totalCount = response.totalCount
+                hasSearched = true
                 onUpdate?()
             } catch is CancellationError {
                 // 新しい検索に置き換えられた場合は何もしない
