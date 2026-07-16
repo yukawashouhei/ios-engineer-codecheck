@@ -13,13 +13,28 @@ final class RepositorySearchViewController: UITableViewController {
 
     @IBOutlet private weak var searchBar: UISearchBar!
 
-    private var repositories: [[String: Any]] = []
-    private var searchTask: URLSessionTask?
+    private let viewModel = RepositorySearchViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.placeholder = "GitHubのリポジトリを検索"
         searchBar.delegate = self
+        bindViewModel()
+    }
+
+    private func bindViewModel() {
+        viewModel.onUpdate = { [weak self] in
+            self?.tableView.reloadData()
+        }
+        viewModel.onError = { [weak self] message in
+            self?.presentErrorAlert(message: message)
+        }
+    }
+
+    private func presentErrorAlert(message: String) {
+        let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -28,20 +43,21 @@ final class RepositorySearchViewController: UITableViewController {
               let selectedIndexPath = tableView.indexPathForSelectedRow else {
             return
         }
-        detailViewController.repository = repositories[selectedIndexPath.row]
+        let repository = viewModel.repository(at: selectedIndexPath.row)
+        detailViewController.viewModel = RepositoryDetailViewModel(repository: repository)
     }
 
     // MARK: - UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        repositories.count
+        viewModel.repositories.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Repository", for: indexPath)
-        let repository = repositories[indexPath.row]
-        cell.textLabel?.text = repository["full_name"] as? String
-        cell.detailTextLabel?.text = repository["language"] as? String
+        let repository = viewModel.repositories[indexPath.row]
+        cell.textLabel?.text = repository.fullName
+        cell.detailTextLabel?.text = repository.language
         return cell
     }
 
@@ -57,27 +73,11 @@ final class RepositorySearchViewController: UITableViewController {
 extension RepositorySearchViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchTask?.cancel()
+        viewModel.cancelSearch()
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let keyword = searchBar.text, !keyword.isEmpty else { return }
-
-        var components = URLComponents(string: "https://api.github.com/search/repositories")
-        components?.queryItems = [URLQueryItem(name: "q", value: keyword)]
-        guard let url = components?.url else { return }
-
-        searchTask = URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
-            guard let data,
-                  let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                  let items = json["items"] as? [[String: Any]] else {
-                return
-            }
-            DispatchQueue.main.async {
-                self?.repositories = items
-                self?.tableView.reloadData()
-            }
-        }
-        searchTask?.resume()
+        viewModel.search(keyword: searchBar.text ?? "")
+        searchBar.resignFirstResponder()
     }
 }
