@@ -8,36 +8,36 @@
 
 import XCTest
 
-class iOSEngineerCodeCheckUITests: XCTestCase {
+final class iOSEngineerCodeCheckUITests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    /// 検索 → 一覧表示 → 詳細画面遷移までの一連の流れを検証する
+    /// ※ 実際に GitHub API と通信するため、ネットワーク接続が必要
+    func test_検索して一覧から詳細画面へ遷移できる() throws {
         let app = XCUIApplication()
         app.launch()
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let searchField = app.searchFields.firstMatch
+        XCTAssertTrue(searchField.waitForExistence(timeout: 5))
+        searchField.tap()
+        searchField.typeText("swift\n")
+
+        let firstCell = app.cells.firstMatch
+        XCTAssertTrue(firstCell.waitForExistence(timeout: 10), "検索結果が表示されること")
+        firstCell.tap()
+
+        let starsLabel = app.staticTexts.matching(
+            NSPredicate(format: "label CONTAINS %@", "stars")
+        ).firstMatch
+        XCTAssertTrue(starsLabel.waitForExistence(timeout: 5), "詳細画面に Star 数が表示されること")
     }
 
     func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
+        measure(metrics: [XCTApplicationLaunchMetric()]) {
+            XCUIApplication().launch()
         }
     }
 }
